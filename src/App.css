@@ -87,7 +87,7 @@ input[type="checkbox"] {
 .close {
   position: absolute; /* Position relative to the parent container */
   right: 15px; /* Fix distance from the right edge */
-  color: rgb(49, 48, 48); /* Red color for the close button */
+  color: rgb(250, 248, 248); /* Red color for the close button */
   font-size: 20px; /* Size of the close button */
   cursor: pointer; /* Pointer cursor on hover */
 }

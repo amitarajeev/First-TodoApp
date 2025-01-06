@@ -1,0 +1,305 @@
+*********************************************** SPRINT 1 **************************************************************
+
+/////////////////////App.jsx////////////////////////
+
+import React, { useState } from "react";
+
+function App() {
+  // State to store the to-do items and the input value
+  const [todos, setTodos] = useState([]);
+  const [newTodo, setNewTodo] = useState("");
+
+  // Function to add a new to-do
+  const addTodo = () => {
+    if (newTodo.trim() !== "") { // Ensure no empty todos
+      setTodos([...todos, newTodo]); // Add new todo to the list
+      setNewTodo(""); // Clear input after adding
+    }
+  };
+
+  // Function to remove a to-do by index
+  const removeTodo = (index) => {
+    setTodos(todos.filter((_, i) => i !== index)); // Filter out the todo at the given index
+  };
+
+  return (
+    <div className="App">
+      <h1>My To-Do App</h1>
+      
+      {/* Input for adding a new to-do */}
+      <input
+        type="text"
+        value={newTodo}
+        onChange={(e) => setNewTodo(e.target.value)} // Update state as user types
+        placeholder="Enter a to-do"
+      />
+      <button onClick={addTodo}>Add To-Do</button>
+
+      {/* Display the to-do list */}
+      <ul>
+        {todos.map((todo, index) => (
+          <li key={index}>
+            {todo} 
+            <button onClick={() => removeTodo(index)}>Remove</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
+
+
+/////////////////App.css////////////////
+
+
+.App {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  min-height: 100vh; /* Full height of the viewport */
+  flex-direction: column; /* Stack items vertically */
+  text-align: center; /* Center text inside the container */
+  font-family: Arial, sans-serif; /* Add a clean font */
+  background-color: #f8f9fa; /* Optional: Light background color */
+}
+
+input {
+  margin: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #506a86;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #323233;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+li button {
+  margin-left: 10px;
+  background-color: rgb(172, 100, 100);
+  border-radius: 5px;
+}
+
+li button:hover {
+  background-color: darkred;
+}
+
+***************************************************************************************************************************************
+
+
+********************************************************** SPRINT 2 *******************************************************************
+
+//////////////////App.jsx///////////////////////
+
+import React, { useState } from "react";
+import "./App.css";
+
+function App() {
+  // State to store the list of to-dos (array of objects, each object represents a to-do)
+  const [todos, setTodos] = useState([]);
+  // State to store the current input value for the new to-do item
+  const [newTodo, setNewTodo] = useState("");
+
+  // Function to add a new to-do item to the list
+  const addTodo = () => {
+    if (newTodo.trim() !== "") {
+      setTodos([...todos, { text: newTodo, isDone: false }]); // Add a new to-do object with `isDone` as `false`
+      setNewTodo(""); // Clear the input field after adding the new to-do
+    }
+  };
+
+  // Function to toggle the "done" status of a to-do
+  const toggleDone = (index) => {
+    const updatedTodos = [...todos];
+    updatedTodos[index].isDone = !updatedTodos[index].isDone; // Toggle the `isDone` status
+    setTodos(updatedTodos); // Update the `todos` state
+  };
+
+  // Function to remove a to-do item from the list
+  const removeTodo = (index) => {
+    setTodos(todos.filter((_, i) => i !== index)); // Filter out the selected to-do item
+  };
+
+  return (
+    <div className="App"> {/* Parent container for the app */}
+      <h1>My To-Do App</h1> {/* Main title for the app */}
+
+      {/* Input box and button for adding new to-do items */}
+      <div className="input-box">
+        <input
+          type="text"
+          value={newTodo} // Bind the input value to the `newTodo` state
+          onChange={(e) => setNewTodo(e.target.value)} // Update `newTodo` when the user types
+          placeholder="Enter a to-do" // Placeholder text for the input field
+        />
+        <button onClick={addTodo}>Add To-Do</button> {/* Button to add the new to-do */}
+      </div>
+
+      {/* To-Do List */}
+      <div className="todo-container">
+        <h2>To-Do List</h2> {/* Title for the to-do list */}
+        {todos.length === 0 ? (
+          <p>No tasks added yet!</p> // Display this message if the list is empty
+        ) : (
+          todos.map((todo, index) => ( // Iterate over each to-do in the `todos` list
+            <div key={index} className="todo-item"> {/* Container for each to-do */}
+              <input
+                type="checkbox" // Checkbox to mark the to-do as done
+                checked={todo.isDone} // Checkbox is checked if the to-do is marked as done
+                onChange={() => toggleDone(index)} // Call `toggleDone` when the checkbox is clicked
+                title="Mark as done" // Tooltip for the checkbox
+              />
+              <span
+                style={{
+                  textDecoration: todo.isDone ? "line-through" : "none", // Apply line-through if `isDone` is true
+                  color: todo.isDone ? "#888" : "#fff", // Change color to gray if `isDone` is true
+                }}
+              >
+                {todo.text}
+              </span>
+              <span
+                className="close" // Close button to remove the to-do
+                onClick={() => removeTodo(index)} // Call `removeTodo` when the close button is clicked
+              >
+                &times; {/* Multiplication symbol (X) for the close button */}
+              </span>
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+/////////////////App.css/////////////////
+
+/* Global Reset */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #1e1e1e; /* Dark background */
+  color: #cfcfcf; /* Light text for contrast */
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.input-box {
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4b5b6b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* To-Do List Styles */
+.todo-container {
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #2c2c2c;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.todo-container h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #cad1d1;
+}
+
+.todo-item {
+  display: flex; /* Flexbox to align items horizontally */
+  align-items: center; /* Vertically center the content */
+  justify-content: space-between; /* Spread items across the width */
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #3e3e3e; /* Dark background for each task */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  position: relative; /* Enable absolute positioning for child elements */
+}
+
+.todo-item span {
+  flex-grow: 1; /* Allow the text to take up remaining space */
+  margin-left: 10px; /* Add space between the checkbox and text */
+  text-align: left; /* Align text to the left */
+}
+
+input[type="checkbox"] {
+  margin-right: 10px; /* Add space between the checkbox and the text */
+  transform: scale(1.2); /* Slightly enlarge the checkbox */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.close {
+  position: absolute; /* Position relative to the parent container */
+  right: 15px; /* Fix distance from the right edge */
+  color: rgb(49, 48, 48); /* Red color for the close button */
+  font-size: 20px; /* Size of the close button */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.close:hover {
+  color: rgb(86, 12, 12); /* Change color on hover */
+}
+
+/* Empty State Text */
+.todo-container p {
+  color: #888;
+  font-style: italic;
+}
+

@@ -1,0 +1,51 @@
+.App {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  min-height: 100vh; /* Full height of the viewport */
+  flex-direction: column; /* Stack items vertically */
+  text-align: center; /* Center text inside the container */
+  font-family: Arial, sans-serif; /* Add a clean font */
+  background-color: #f8f9fa; /* Optional: Light background color */
+}
+
+input {
+  margin: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #506a86;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #323233;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+li button {
+  margin-left: 10px;
+  background-color: rgb(172, 100, 100);
+  border-radius: 5px;
+}
+
+li button:hover {
+  background-color: darkred;
+}

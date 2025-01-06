@@ -29,24 +29,24 @@ function App() {
 
   return (
     <div className="App"> {/* Parent container for the app */}
-      <h1>My To-Do App</h1> {/* Main title for the app */}
+      <h1 style={{ fontFamily: 'Noto, serif', fontWeight: 700}}>My To-Do App</h1> {/* Main title for the app */}
 
       {/* Input box and button for adding new to-do items */}
       <div className="input-box">
-        <input
+        <input style={{ fontFamily: 'Noto, serif', fontWeight: 250}}
           type="text"
           value={newTodo} // Bind the input value to the `newTodo` state
           onChange={(e) => setNewTodo(e.target.value)} // Update `newTodo` when the user types
           placeholder="Enter a to-do" // Placeholder text for the input field
         />
-        <button onClick={addTodo}>Add To-Do</button> {/* Button to add the new to-do */}
+        <button onClick={addTodo} style={{ fontFamily: 'Noto, serif', fontWeight: 300}}>Add To-Do</button> {/* Button to add the new to-do */}
       </div>
 
       {/* To-Do List */}
       <div className="todo-container">
-        <h2>To-Do List</h2> {/* Title for the to-do list */}
+        <h2 style={{fontFamily: 'Noto, serif', fontWeight: 450}}>To-Do List</h2> {/* Title for the to-do list */}
         {todos.length === 0 ? (
-          <p>No tasks added yet!</p> // Display this message if the list is empty
+          <p style={{fontFamily: 'Noto, serif', fontWeight: 150}}> No tasks added yet!</p> // Display this message if the list is empty
         ) : (
           todos.map((todo, index) => ( // Iterate over each to-do in the `todos` list
             <div key={index} className="todo-item"> {/* Container for each to-do */}

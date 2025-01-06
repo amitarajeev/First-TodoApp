@@ -1,5 +1,5 @@
 /* Global Reset */
-html, body, #root {
+html, #root {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -7,6 +7,25 @@ html, body, #root {
   background-color: #1e1e1e; /* Dark background */
   color: #cfcfcf; /* Light text for contrast */
 }
+
+body {
+  font-family: 'Noto Serif', serif;
+  background-color: #1e1e1e; /* Keep the background color */
+  color: #cfcfcf; /* Default text color */
+}
+
+/* Specific styling for the header */
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700; /* Bold weight for the header */
+}
+
+/* Styling for the to-do items */
+.todo-item span {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400; /* Regular weight for task text */
+}
+
 
 .App {
   display: flex;
@@ -101,3 +120,6 @@ input[type="checkbox"] {
   color: #888;
   font-style: italic;
 }
+
+
+
